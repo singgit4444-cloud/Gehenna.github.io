@@ -1,1 +1,395 @@
+<!doctype html>
 
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gehenna — 極黑地獄火</title>
+  <meta name="description" content="極黑暗地獄火主題網站 — 多頁面 SPA、眾多特效與音遊（節奏遊戲）範本，支援手機與電腦。" />
+  <style>
+    /* RESET */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body,#app{height:100%;}
+    body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif; color:#f2e8e8; background:#070304; overflow:hidden}/* MAIN LAYOUT */
+#app{position:relative;display:flex;flex-direction:column}
+header{height:72px;display:flex;align-items:center;gap:16px;padding:0 20px;z-index:40}
+.logo{display:flex;align-items:center;gap:12px}
+.logo .symbol{width:52px;height:52px;border-radius:10px;background:linear-gradient(180deg,#1b0000,#3b0000);display:flex;align-items:center;justify-content:center;font-weight:800;box-shadow:0 6px 30px rgba(0,0,0,.7), inset 0 -6px 30px rgba(255,50,0,.08)}
+nav{display:flex;gap:12px;margin-left:24px}
+nav a{padding:10px 14px;border-radius:10px;text-decoration:none;color:#ffdede;font-weight:600;backdrop-filter: blur(4px);background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,0,0,0.02));border:1px solid rgba(255,0,0,0.06)}
+.cta{margin-left:auto;display:flex;gap:10px}
+.cta a{padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,0.06);text-decoration:none}
+
+/* CANVAS LAYERS */
+.layer-canvas{position:fixed;inset:0;z-index:0}
+.ui{position:relative;z-index:30;padding:18px;pointer-events:none}
+main{position:relative;z-index:30;display:flex;flex:1;overflow:auto;padding:26px}
+.panel{width:100%;max-width:1200px;margin:0 auto;background:linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.6));border-radius:16px;padding:20px;box-shadow:0 10px 60px rgba(0,0,0,0.7);backdrop-filter: blur(6px);pointer-events:auto}
+
+/* GRID of cards for pages */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.card{border-radius:12px;padding:16px;background:linear-gradient(180deg, rgba(30,6,6,0.45), rgba(0,0,0,0.5));border:1px solid rgba(255,255,255,0.03);min-height:160px;position:relative;overflow:hidden}
+.card h3{font-size:18px;margin-bottom:8px}
+.card p{font-size:13px;opacity:.9}
+.card .go{position:absolute;right:12px;bottom:12px;padding:8px 10px;border-radius:8px;background:rgba(255,0,0,0.08);border:1px solid rgba(255,0,0,0.12);text-decoration:none;color:#ffdede}
+
+/* FOOTER */
+footer{position:relative;z-index:30;padding:12px;text-align:center;font-size:13px;color:#ccb}
+
+/* FLOATING HELL-SKULLS for easter egg */
+.skull{position:fixed;width:56px;height:56px;right:14px;bottom:120px;z-index:45;cursor:pointer;pointer-events:auto}
+.skull img{width:100%;height:100%;filter:drop-shadow(0 10px 30px rgba(0,0,0,.8))}
+
+/* MODAL */
+.modal{position:fixed;inset:0;display:none;place-items:center;background:linear-gradient(180deg, rgba(0,0,0,0.7), rgba(0,0,0,0.9));z-index:60}
+.modal .box{width:min(980px,92%);background:linear-gradient(180deg,#120005,#16060a);border-radius:14px;padding:18px;border:1px solid rgba(255,255,255,0.04)}
+.hidden{display:none}
+
+/* RESPONSIVE tweaks */
+@media (max-width:720px){header{padding:8px} .logo .symbol{width:44px;height:44px} .skull{width:44px;height:44px;right:8px;bottom:80px}}
+
+/* small helpers */
+.muted{opacity:.65;font-size:13px}
+
+  </style>
+</head>
+<body>
+  <canvas id="bg-canvas" class="layer-canvas"></canvas>
+  <div id="app">
+    <header>
+      <div class="logo">
+        <div class="symbol">G</div>
+        <div>
+          <div style="font-weight:800">Gehenna</div>
+          <div style="font-size:12px;opacity:.7">極黑暗地獄火</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#/home" data-route>首頁</a>
+        <a href="#/games" data-route>遊戲館</a>
+        <a href="#/audio" data-route>音源 / 範本</a>
+        <a href="#/archive" data-route>作品集</a>
+        <a href="#/links" data-route>連結與社群</a>
+      </nav>
+      <div class="cta">
+        <a href="https://www.youtube.com/@Gehe%C5%8Bna" target="_blank">YouTube</a>
+        <a href="https://gehenna404.wordpress.com/" target="_blank">新站</a>
+        <a href="https://b23.tv/rFg0Ge4" target="_blank">Bilibili</a>
+      </div>
+    </header><div class="ui">
+  <!-- floating skull: easter egg -->
+  <div class="skull" id="skull" title="神秘入口（點擊或長按）">
+    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 24 24'><path fill='%23ffdddd' d='M12 2C8 2 5 5 5 9c0 3 1 6 3 8 2 2 4 3 4 3s2-1 4-3c2-2 3-5 3-8 0-4-3-7-7-7zM9.5 9.5c-.8 0-1.5-.7-1.5-1.5S8.7 6.5 9.5 6.5 11 7.2 11 8s-.7 1.5-1.5 1.5zM14.5 9.5c-.8 0-1.5-.7-1.5-1.5S13.7 6.5 14.5 6.5 16 7.2 16 8s-.7 1.5-1.5 1.5z'/></svg>" />
+  </div>
+</div>
+
+<main>
+  <section class="panel" id="panel-root">
+    <!-- SPA content injected here -->
+  </section>
+</main>
+
+<footer>
+  Gehenna — 建議在 HTTPS 靜態主機 (GitHub Pages / Netlify / Vercel) 部署。<span class="muted">(點擊右下骷髏尋找隱藏入口)</span>
+</footer>
+
+  </div>  <!-- MODAL: 魔法少女入口（Easter egg） -->  <div class="modal" id="magic-modal" aria-hidden="true">
+    <div class="box">
+      <h2>隱藏的 — 變身入口</h2>
+      <p class="muted">（靈感參考：魔法少女サイト — 這裡提供暗黑、扭曲的「變身」動畫與選項。此處僅為裝飾與互動示例，請勿侵權。）</p>
+      <div style="display:flex;gap:12px;margin-top:14px;flex-wrap:wrap">
+        <button id="transform-btn">觸發變身動畫</button>
+        <button id="close-modal">關閉</button>
+      </div>
+      <div id="transform-area" style="margin-top:16px"></div>
+      <p class="muted" style="margin-top:12px">想要把這段入口放到真正的子頁、或把它變成可上傳自訂變身素材的系統，我可以接著幫你擴展。</p>
+    </div>
+  </div>  <!-- SCRIPTS -->  <script>
+  /* -------------------------
+     IMPORTANT: Single-file SPA template
+     - 多層 canvas (背景 + 粒子) + UI
+     - Hash routing for pages
+     - 節奏遊戲 (簡易版) 與載入外部譜面JSON的範例
+     - 隱藏入口（骷髏）觸發 modal
+  ---------------------------*/
+
+  // ROUTING content templates (kept concise but feature-rich)
+  const TEMPLATES = {
+    home: `
+      <div class="grid">
+        <div class="card">
+          <h3>地獄門廳 (Welcome)</h3>
+          <p>沉入炙熱的 UI：炙焰背景、動態粒子、視差視覺。從這裡前往各個領地。</p>
+          <a class="go" href="#/games" data-route>進入遊戲館</a>
+        </div>
+        <div class="card">
+          <h3>最新影音 / 作品</h3>
+          <p>已連結到你的頻道與 Bilibili。建議放置自動播放預覽縮圖與最新影片節錄（需 YouTube API / oEmbed）。</p>
+          <a class="go" href="https://www.youtube.com/@Gehe%C5%8Bna" target="_blank">觀看</a>
+        </div>
+        <div class="card">
+          <h3>關於網站</h3>
+          <p>主題：極暗、地獄、魔法少女扭曲想像。網站應提供音源下載、譜面資料庫、以及社群入口。</p>
+        </div>
+        <div class="card">
+          <h3>快速連結</h3>
+          <p>你的資源已整理：YouTube / 新站 / 舊站 / Bilibili / Discord / Drive（譜面）。</p>
+          <a class="go" href="#/links" data-route>查看</a>
+        </div>
+      </div>
+    `,
+
+    games: `
+      <h2>遊戲館 — 多款小遊戲模組</h2>
+      <p class="muted">此處為多遊戲容器：點選以下任一載入遊戲（皆為嵌入式 JS 範本，已支援觸控）</p>
+      <div style="margin-top:12px;display:flex;gap:12px;flex-wrap:wrap">
+        <button onclick="loadGame('rhythm')">音遊 — HARD 模組</button>
+        <button onclick="loadGame('maze')">黑暗迷宮（點擊式）</button>
+        <button onclick="loadGame('avoid')">閃避挑戰</button>
+      </div>
+
+      <div id="game-root" style="margin-top:18px;padding:12px;background:rgba(0,0,0,0.45);border-radius:10px">
+        <em class="muted">尚未選擇遊戲。</em>
+      </div>
+
+      <div style="margin-top:14px">
+        <h4>音遊說明（如何上傳譜面）</h4>
+        <p class="muted">格式範例 (JSON)：{ "bpm":180, "notes": [{"time":1.5, "lane":2}, ... ] }</p>
+        <p class="muted">將譜面 JSON 放到可公開存取的 URL（例如你的 Google Drive 需設定為公開或使用 GitHub），並在遊戲中貼上 URL 即可載入。</p>
+      </div>
+    `,
+
+    audio: `
+      <h2>音源與採樣包</h2>
+      <p class="muted">HARDCORE World Ender kick sample pack 已放在你的新站。可在此放置分級下載與預覽播放。</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px">
+        <a class="card" href="https://gehenna404.wordpress.com/hardcore-world-ender-kick-sample-pack-vol-1/" target="_blank" style="display:block;min-width:220px">Sample Pack 頁面</a>
+        <a class="card" href="https://drive.google.com/drive/folders/1_hv08siY_jDRyz3mdipSAwM--_er_zqp" target="_blank" style="display:block;min-width:220px">譜面 / Chart 資料夾</a>
+      </div>
+    `,
+
+    archive: `
+      <h2>作品集 / 過往專案</h2>
+      <p class="muted">可嵌入舊站（Blogpost）與每個作品的詳情頁。</p>
+      <div style="margin-top:12px" class="grid">
+        <div class="card"><h3>舊網站存檔</h3><p>https://mongk0ek.blogspot.com/2025/01/blog-post_8.html</p><a class="go" href="https://mongk0ek.blogspot.com/2025/01/blog-post_8.html" target="_blank">查看</a></div>
+      </div>
+    `,
+
+    links: `
+      <h2>連結與社群</h2>
+      <ul>
+        <li><a href="https://www.youtube.com/@Gehe%C5%8Bna" target="_blank">YouTube 頻道</a></li>
+        <li><a href="https://gehenna404.wordpress.com/" target="_blank">新網站（WordPress）</a></li>
+        <li><a href="https://mongk0ek.blogspot.com/2025/01/blog-post_8.html" target="_blank">舊網站 (Blogspot)</a></li>
+        <li><a href="https://b23.tv/rFg0Ge4" target="_blank">Bilibili</a></li>
+        <li><a href="https://drive.google.com/drive/folders/1_hv08siY_jDRyz3mdipSAwM--_er_zqp" target="_blank">譜面檔案（Google Drive）</a></li>
+        <li><a href="https://discord.com/invite/Dh5qyadJRv" target="_blank">Discord 社群</a></li>
+      </ul>
+
+      <p class="muted">提示：將譜面移到 GitHub 或直接把 JSON 放到 /charts/ 下，會更穩定且更適合載入。</p>
+    `
+  }
+
+  // render route
+  function renderRoute(){
+    const hash = location.hash || '#/home';
+    const key = hash.replace('#/','').split('/')[0] || 'home';
+    const panel = document.getElementById('panel-root');
+    panel.innerHTML = TEMPLATES[key] || '<h2>找不到頁面</h2>';
+    panel.querySelectorAll('[data-route]').forEach(a=>a.addEventListener('click', e=>{ /* SPA links handled by hashchange */ }))
+  }
+  window.addEventListener('hashchange', renderRoute);
+  renderRoute();
+
+  /* ------------------
+     BACKGROUND: lava + subtle noise + floating embers
+     Canvas draws a moving lava shader-like gradient and embers
+  -------------------*/
+  const canvas = document.getElementById('bg-canvas');
+  const ctx = canvas.getContext('2d');
+  let W = canvas.width = innerWidth;
+  let H = canvas.height = innerHeight;
+  window.addEventListener('resize', ()=>{W=canvas.width=innerWidth;H=canvas.height=innerHeight});
+
+  // simple particle system (embers)
+  const particles=[];
+  function spawn(){
+    if(particles.length<180 && Math.random()<0.6){
+      particles.push({x:Math.random()*W, y:H+20, vy:- (1+Math.random()*3), life:60+Math.random()*160, size:1+Math.random()*3, alpha:0.6+Math.random()*0.4});
+    }
+  }
+
+  function draw(){
+    // lava gradient background
+    const g = ctx.createLinearGradient(0,H*0.2,0,H);
+    g.addColorStop(0,'#0b0000');
+    g.addColorStop(0.25,'#2b0000');
+    g.addColorStop(0.6,'#5d0b00');
+    g.addColorStop(1,'#120000');
+    ctx.fillStyle = g;
+    ctx.fillRect(0,0,W,H);
+
+    // subtle moving noise (sine-based bands)
+    for(let i=0;i<6;i++){
+      ctx.globalAlpha = 0.03 + i*0.01;
+      ctx.fillStyle = '#ff3300';
+      const y = H*0.25 + Math.sin((Date.now()/800)+i*1.1)*60 + i*30;
+      ctx.fillRect(0,y,W,60);
+    }
+
+    // draw particles
+    for(let i=particles.length-1;i>=0;i--){
+      const p = particles[i];
+      p.x += (Math.sin((p.y+Date.now()/1000)/40))*0.6;
+      p.y += p.vy;
+      p.life -= 1;
+      ctx.beginPath();
+      ctx.globalAlpha = Math.max(0, p.life/200) * p.alpha;
+      ctx.fillStyle = 'rgba(255,180,100,1)';
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
+      ctx.fill();
+      if(p.life<=0 || p.y<-40) particles.splice(i,1);
+    }
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(draw);
+  }
+  (function loop(){ spawn(); draw(); })();
+
+  /* ------------------
+     Skull (easter egg) logic
+  -------------------*/
+  const skull = document.getElementById('skull');
+  const modal = document.getElementById('magic-modal');
+  const closeModal = document.getElementById('close-modal');
+  skull.addEventListener('click', ()=>{ openModal(); });
+  skull.addEventListener('contextmenu', (e)=>{ e.preventDefault(); openModal(); });
+  function openModal(){ modal.style.display='grid'; modal.setAttribute('aria-hidden','false'); }
+  closeModal.addEventListener('click', ()=>{ modal.style.display='none'; modal.setAttribute('aria-hidden','true'); });
+
+  // transform button anim (simple DOM confetti-ish)
+  document.getElementById('transform-btn').addEventListener('click', ()=>{
+    const area = document.getElementById('transform-area');
+    area.innerHTML = '';
+    for(let i=0;i<120;i++){
+      const el = document.createElement('div');
+      el.textContent = '✦';
+      el.style.position='absolute';
+      el.style.left=(50+Math.random()*360-180)+'px';
+      el.style.top=(50+Math.random()*180-90)+'px';
+      el.style.opacity=1; el.style.fontSize=(6+Math.random()*22)+'px';
+      area.appendChild(el);
+      (function(e){ setTimeout(()=>{ e.style.transition='all 1200ms ease'; e.style.opacity=0; e.style.transform='translateY(-200px) rotate('+ (Math.random()*360) +'deg)'; }, 10); setTimeout(()=>e.remove(),1400); })(el);
+    }
+  });
+
+  /* ------------------
+     GAME LOADER & simple rhythm engine
+     - loadGame('rhythm') will inject a playable canvas
+     - rhythm can load a JSON beatmap via URL
+  -------------------*/
+  function loadGame(key){
+    const root = document.getElementById('game-root');
+    if(key==='rhythm'){
+      root.innerHTML = `
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+          <input id="chart-url" placeholder="輸入譜面 JSON 的 URL（或留空載入範例）" style="flex:1;padding:8px;border-radius:8px;background:#080303;border:1px solid rgba(255,0,0,0.06);color:#fff" />
+          <button id="load-chart">載入譜面</button>
+          <select id="diff"><option>HARD</option><option>EXTREME</option><option>INSANE</option></select>
+        </div>
+        <div style="margin-top:12px;display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap">
+          <canvas id="rg-canvas" width="900" height="400" style="max-width:100%;border-radius:8px;background:linear-gradient(180deg,rgba(0,0,0,0.6),rgba(0,0,0,0.4));"></canvas>
+          <div style="min-width:180px">
+            <p class="muted">Controls: 點擊或觸控下方四條軌道。手機建議橫置。</p>
+            <button id="play-sample">播放示範音軌</button>
+            <div id="score" style="margin-top:12px">分數: 0</div>
+          </div>
+        </div>
+      `;
+
+      // sample beatmap (very hard) — times in seconds, lane 0-3
+      const sample = { bpm:180, notes:[
+        {time:0.5,lane:0},{time:0.66,lane:2},{time:0.82,lane:1},{time:1.0,lane:3},
+        {time:1.2,lane:0},{time:1.4,lane:1},{time:1.6,lane:2},{time:1.8,lane:3},
+        // burst
+        {time:2.0,lane:0},{time:2.02,lane:1},{time:2.04,lane:2},{time:2.06,lane:3},
+        {time:2.25,lane:1},{time:2.5,lane:2},{time:2.75,lane:0},{time:3.0,lane:3}
+      ] };
+
+      const canvas = document.getElementById('rg-canvas');
+      const ctx = canvas.getContext('2d');
+      let chart = sample;
+      const hitRegion = canvas.height - 80; // y where notes should be hit
+      let startTime = null; let playing=false; let score=0;
+      document.getElementById('load-chart').onclick = async ()=>{
+        const url = document.getElementById('chart-url').value.trim();
+        if(!url){ chart = sample; alert('載入範例譜面'); start(); return; }
+        try{
+          const res = await fetch(url); if(!res.ok) throw new Error('載入失敗');
+          chart = await res.json(); alert('譜面載入完成'); start();
+        }catch(e){alert('載入錯誤: '+e.message);}
+      }
+
+      document.getElementById('play-sample').onclick = ()=>{ start(true); };
+
+      // touch inputs
+      canvas.addEventListener('pointerdown',(e)=>{ handleInput(e.clientX); });
+
+      function handleInput(x){
+        const w = canvas.width; const laneWidth = w/4; const lane = Math.floor(x/laneWidth);
+        // find nearest upcoming note in lane within windows
+        const t = (performance.now() - startTime)/1000;
+        let best=null; let bestDelta=0.25;
+        for(const n of chart.notes){ if(n.lane!==lane) continue; const delta = Math.abs(n.time - t); if(delta<bestDelta){ bestDelta=delta; best=n; } }
+        if(best){ score += Math.max(0, Math.floor((0.25-bestDelta)*1000)); document.getElementById('score').innerText='分數: '+score; /* consume note */ best.hit=true; }
+      }
+
+      function start(demo=false){ startTime = performance.now() + (demo?200:200); playing=true; score=0; document.getElementById('score').innerText='分數: 0'; requestAnimationFrame(step); }
+
+      function step(){
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        // draw lanes
+        const w=canvas.width; const h=canvas.height; const laneW=w/4;
+        for(let i=0;i<4;i++){
+          ctx.fillStyle='rgba(255,255,255,0.03)'; ctx.fillRect(i*laneW+2,0,laneW-4,h);
+          ctx.fillStyle='rgba(0,0,0,0.3)'; ctx.fillRect(i*laneW+2,hitRegion,laneW-4,6);
+        }
+        if(!playing){ requestAnimationFrame(step); return; }
+        const t = (performance.now() - startTime)/1000;
+        // render notes
+        for(const n of chart.notes){ if(n.hit) continue; const timeLeft = n.time - t; const y = hitRegion - timeLeft*800; if(y>h+80) continue; if(y>-80){ ctx.beginPath(); ctx.fillStyle='rgba(255,200,120,0.95)'; ctx.roundRect(n.lane*laneW+laneW*0.1, y, laneW*0.8, 18,6); ctx.fill(); }}
+        // end condition
+        if(t> (Math.max(...chart.notes.map(x=>x.time))+4)){
+          playing=false; alert('歌曲結束，分數: '+score);
+        } else requestAnimationFrame(step);
+      }
+
+      // add roundRect polyfill
+      CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r){ if (w<2*r) r=w/2; if (h<2*r) r=h/2; this.beginPath(); this.moveTo(x+r,y); this.arcTo(x+w,y,x+w,y+h,r); this.arcTo(x+w,y+h,x,y+h,r); this.arcTo(x,y+h,x,y,r); this.arcTo(x,y,x+w,y,r); this.closePath(); }
+
+    } else if(key==='maze'){
+      const root = document.getElementById('game-root');
+      root.innerHTML = `<canvas id="maze-c" width="900" height="420" style="max-width:100%;border-radius:8px;background:#050203"></canvas><p class="muted">使用滑動或點擊移動。迷宮含隱藏捷徑與陷阱。</p>`;
+      const c = document.getElementById('maze-c'); const ct = c.getContext('2d');
+      // very small procedural maze demo (placeholder)
+      const cols=20, rows=10, cell= c.width/cols; let px=cell/2, py=cell/2;
+      function drawMaze(){ ct.fillStyle='#020101'; ct.fillRect(0,0,c.width,c.height); ct.fillStyle='#5b0000'; for(let x=0;x<cols;x++)for(let y=0;y<rows;y++){ if(Math.random()<0.15) ct.fillRect(x*cell+4,y*cell+4,cell-8,cell-8); }
+        ct.fillStyle='#ffdede'; ct.beginPath(); ct.arc(px,py,8,0,Math.PI*2); ct.fill(); }
+      drawMaze(); c.addEventListener('pointerdown', e=>{ const rect=c.getBoundingClientRect(); px=e.clientX-rect.left; py=e.clientY-rect.top; drawMaze(); });
+
+    } else if(key==='avoid'){
+      const root = document.getElementById('game-root');
+      root.innerHTML = `<canvas id="avoid-c" width="900" height="420" style="max-width:100%;border-radius:8px;background:#020101"></canvas><p class="muted">用滑動避免飛來的火焰，時間越長分數越高。</p>`;
+      const c=document.getElementById('avoid-c'); const ct=c.getContext('2d'); let px=c.width/2, py=c.height-30; let objs=[]; function spawnOb(){ objs.push({x:Math.random()*c.width,y:-40,vy:2+Math.random()*4,size:12+Math.random()*18}); }
+      setInterval(spawnOb,400); c.addEventListener('pointermove',(e)=>{ const r=c.getBoundingClientRect(); px=e.clientX-r.left; }); function loopA(){ ct.clearRect(0,0,c.width,c.height); ct.fillStyle='#fff'; ct.beginPath(); ct.arc(px,py,8,0,Math.PI*2); ct.fill(); for(let i=objs.length-1;i>=0;i--){ let o=objs[i]; o.y+=o.vy; ct.fillStyle='rgba(255,120,20,0.9)'; ct.beginPath(); ct.arc(o.x,o.y,o.size,0,Math.PI*2); ct.fill(); if(Math.hypot(o.x-px,o.y-py) < o.size+8){ alert('你被火焰擊中！遊戲重置'); objs=[]; break; } if(o.y>c.height+40) objs.splice(i,1);} requestAnimationFrame(loopA);} loopA();
+    }
+  }
+
+  // attach global (for buttons inline)
+  window.loadGame = loadGame;
+
+  // initial: if user landed on games, pre-open
+  if(location.hash.includes('/games')) loadGame('rhythm');
+
+  </script></body>
+</html>
