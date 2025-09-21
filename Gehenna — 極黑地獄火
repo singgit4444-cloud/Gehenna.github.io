@@ -1,0 +1,172 @@
+From: <Saved by Blink>
+Snapshot-Content-Location: http://O3oBpZYwOnlefCN:SRnYAsYDkIW8mck@localhost:15651/storage/emulated/0/Gehenna.html
+Subject: =?utf-8?Q?Gehenna=20=E2=80=94=20=E6=A5=B5=E9=BB=91=E5=9C=B0=E7=8D=84=E7?=
+ =?utf-8?Q?=81=AB?=
+Date: Sun, 21 Sep 2025 15:26:21 +0800
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----MultipartBoundary--DX7d4Duim7FHnmeVlvAe7gxyht0hxLnys7YlqlhXOM----"
+
+
+------MultipartBoundary--DX7d4Duim7FHnmeVlvAe7gxyht0hxLnys7YlqlhXOM----
+Content-Type: text/html
+Content-ID: <frame-032360D7F5C2CF2C769FAB01BDAD2274@mhtml.blink>
+Content-Transfer-Encoding: binary
+Content-Location: http://O3oBpZYwOnlefCN:SRnYAsYDkIW8mck@localhost:15651/storage/emulated/0/Gehenna.html
+
+<!DOCTYPE html><html lang="zh-Hant"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" type="text/css" href="cid:css-97191f91-6660-40c9-a778-72fbb3a50935@mhtml.blink" /><link rel="stylesheet" type="text/css" href="cid:css-f465d2ed-c5af-46cc-91f0-18eda2a9349a@mhtml.blink" />
+  
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Gehenna — 極黑地獄火</title>
+  <meta name="description" content="極黑暗地獄火主題網站 — 多頁面 SPA、眾多特效與音遊（節奏遊戲）範本，支援手機與電腦。">
+  
+</head>
+<body>
+  <canvas id="bg-canvas" class="layer-canvas" width="1280" height="627"></canvas>
+  <div id="app">
+    <header>
+      <div class="logo">
+        <div class="symbol">G</div>
+        <div>
+          <div style="font-weight:800">Gehenna</div>
+          <div style="font-size:12px;opacity:.7">極黑暗地獄火</div>
+        </div>
+      </div>
+      <nav>
+        <a href="http://O3oBpZYwOnlefCN:SRnYAsYDkIW8mck@localhost:15651/storage/emulated/0/Gehenna.html#/home" data-route="">首頁</a>
+        <a href="http://O3oBpZYwOnlefCN:SRnYAsYDkIW8mck@localhost:15651/storage/emulated/0/Gehenna.html#/games" data-route="">遊戲館</a>
+        <a href="http://O3oBpZYwOnlefCN:SRnYAsYDkIW8mck@localhost:15651/storage/emulated/0/Gehenna.html#/audio" data-route="">音源 / 範本</a>
+        <a href="http://O3oBpZYwOnlefCN:SRnYAsYDkIW8mck@localhost:15651/storage/emulated/0/Gehenna.html#/archive" data-route="">作品集</a>
+        <a href="http://O3oBpZYwOnlefCN:SRnYAsYDkIW8mck@localhost:15651/storage/emulated/0/Gehenna.html#/links" data-route="">連結與社群</a>
+      </nav>
+      <div class="cta">
+        <a href="https://www.youtube.com/@Gehe%C5%8Bna" target="_blank">YouTube</a>
+        <a href="https://gehenna404.wordpress.com/" target="_blank">新站</a>
+        <a href="https://b23.tv/rFg0Ge4" target="_blank">Bilibili</a>
+      </div>
+    </header><div class="ui">
+  <!-- floating skull: easter egg -->
+  <div class="skull" id="skull" title="神秘入口（點擊或長按）">
+    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 24 24'><path fill='%23ffdddd' d='M12 2C8 2 5 5 5 9c0 3 1 6 3 8 2 2 4 3 4 3s2-1 4-3c2-2 3-5 3-8 0-4-3-7-7-7zM9.5 9.5c-.8 0-1.5-.7-1.5-1.5S8.7 6.5 9.5 6.5 11 7.2 11 8s-.7 1.5-1.5 1.5zM14.5 9.5c-.8 0-1.5-.7-1.5-1.5S13.7 6.5 14.5 6.5 16 7.2 16 8s-.7 1.5-1.5 1.5z'/></svg>">
+  </div>
+</div>
+
+<main>
+  <section class="panel" id="panel-root">
+      <div class="grid">
+        <div class="card">
+          <h3>地獄門廳 (Welcome)</h3>
+          <p>沉入炙熱的 UI：炙焰背景、動態粒子、視差視覺。從這裡前往各個領地。</p>
+          <a class="go" href="http://O3oBpZYwOnlefCN:SRnYAsYDkIW8mck@localhost:15651/storage/emulated/0/Gehenna.html#/games" data-route="">進入遊戲館</a>
+        </div>
+        <div class="card">
+          <h3>最新影音 / 作品</h3>
+          <p>已連結到你的頻道與 Bilibili。建議放置自動播放預覽縮圖與最新影片節錄（需 YouTube API / oEmbed）。</p>
+          <a class="go" href="https://www.youtube.com/@Gehe%C5%8Bna" target="_blank">觀看</a>
+        </div>
+        <div class="card">
+          <h3>關於網站</h3>
+          <p>主題：極暗、地獄、魔法少女扭曲想像。網站應提供音源下載、譜面資料庫、以及社群入口。</p>
+        </div>
+        <div class="card">
+          <h3>快速連結</h3>
+          <p>你的資源已整理：YouTube / 新站 / 舊站 / Bilibili / Discord / Drive（譜面）。</p>
+          <a class="go" href="http://O3oBpZYwOnlefCN:SRnYAsYDkIW8mck@localhost:15651/storage/emulated/0/Gehenna.html#/links" data-route="">查看</a>
+        </div>
+      </div>
+    </section>
+</main>
+
+<footer>
+  Gehenna — 建議在 HTTPS 靜態主機 (GitHub Pages / Netlify / Vercel) 部署。<span class="muted">(點擊右下骷髏尋找隱藏入口)</span>
+</footer>
+
+  </div>  <!-- MODAL: 魔法少女入口（Easter egg） -->  <div class="modal" id="magic-modal" aria-hidden="true">
+    <div class="box">
+      <h2>隱藏的 — 變身入口</h2>
+      <p class="muted">（靈感參考：魔法少女サイト — 這裡提供暗黑、扭曲的「變身」動畫與選項。此處僅為裝飾與互動示例，請勿侵權。）</p>
+      <div style="display:flex;gap:12px;margin-top:14px;flex-wrap:wrap">
+        <button id="transform-btn">觸發變身動畫</button>
+        <button id="close-modal">關閉</button>
+      </div>
+      <div id="transform-area" style="margin-top:16px"></div>
+      <p class="muted" style="margin-top:12px">想要把這段入口放到真正的子頁、或把它變成可上傳自訂變身素材的系統，我可以接著幫你擴展。</p>
+    </div>
+  </div>  <!-- SCRIPTS -->  
+</body></html>
+------MultipartBoundary--DX7d4Duim7FHnmeVlvAe7gxyht0hxLnys7YlqlhXOM----
+Content-Type: text/css
+Content-Transfer-Encoding: binary
+Content-Location: cid:css-97191f91-6660-40c9-a778-72fbb3a50935@mhtml.blink
+
+@charset "utf-8";
+
+
+------MultipartBoundary--DX7d4Duim7FHnmeVlvAe7gxyht0hxLnys7YlqlhXOM----
+Content-Type: text/css
+Content-Transfer-Encoding: binary
+Content-Location: cid:css-f465d2ed-c5af-46cc-91f0-18eda2a9349a@mhtml.blink
+
+@charset "utf-8";
+
+* { box-sizing: border-box; margin: 0px; padding: 0px; }
+
+html, body, #app { height: 100%; }
+
+body { font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans CJK TC", "PingFang TC", "Microsoft JhengHei", sans-serif; color: rgb(242, 232, 232); background: rgb(7, 3, 4); overflow: hidden; }
+
+#app { position: relative; display: flex; flex-direction: column; }
+
+header { height: 72px; display: flex; align-items: center; gap: 16px; padding: 0px 20px; z-index: 40; }
+
+.logo { display: flex; align-items: center; gap: 12px; }
+
+.logo .symbol { width: 52px; height: 52px; border-radius: 10px; background: linear-gradient(rgb(27, 0, 0), rgb(59, 0, 0)); display: flex; align-items: center; justify-content: center; font-weight: 800; box-shadow: rgba(0, 0, 0, 0.7) 0px 6px 30px, rgba(255, 50, 0, 0.08) 0px -6px 30px inset; }
+
+nav { display: flex; gap: 12px; margin-left: 24px; }
+
+nav a { padding: 10px 14px; border-radius: 10px; text-decoration: none; color: rgb(255, 222, 222); font-weight: 600; backdrop-filter: blur(4px); background: linear-gradient(rgba(255, 255, 255, 0.02), rgba(255, 0, 0, 0.02)); border: 1px solid rgba(255, 0, 0, 0.06); }
+
+.cta { margin-left: auto; display: flex; gap: 10px; }
+
+.cta a { padding: 8px 12px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, 0.06); text-decoration: none; }
+
+.layer-canvas { position: fixed; inset: 0px; z-index: 0; }
+
+.ui { position: relative; z-index: 30; padding: 18px; pointer-events: none; }
+
+main { position: relative; z-index: 30; display: flex; flex: 1 1 0%; overflow: auto; padding: 26px; }
+
+.panel { width: 100%; max-width: 1200px; margin: 0px auto; background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.6)); border-radius: 16px; padding: 20px; box-shadow: rgba(0, 0, 0, 0.7) 0px 10px 60px; backdrop-filter: blur(6px); pointer-events: auto; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+
+.card { border-radius: 12px; padding: 16px; background: linear-gradient(rgba(30, 6, 6, 0.45), rgba(0, 0, 0, 0.5)); border: 1px solid rgba(255, 255, 255, 0.03); min-height: 160px; position: relative; overflow: hidden; }
+
+.card h3 { font-size: 18px; margin-bottom: 8px; }
+
+.card p { font-size: 13px; opacity: 0.9; }
+
+.card .go { position: absolute; right: 12px; bottom: 12px; padding: 8px 10px; border-radius: 8px; background: rgba(255, 0, 0, 0.08); border: 1px solid rgba(255, 0, 0, 0.12); text-decoration: none; color: rgb(255, 222, 222); }
+
+footer { position: relative; z-index: 30; padding: 12px; text-align: center; font-size: 13px; color: rgb(204, 204, 187); }
+
+.skull { position: fixed; width: 56px; height: 56px; right: 14px; bottom: 120px; z-index: 45; cursor: pointer; pointer-events: auto; }
+
+.skull img { width: 100%; height: 100%; filter: drop-shadow(rgba(0, 0, 0, 0.8) 0px 10px 30px); }
+
+.modal { position: fixed; inset: 0px; display: none; place-items: center; background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)); z-index: 60; }
+
+.modal .box { width: min(980px, 92%); background: linear-gradient(rgb(18, 0, 5), rgb(22, 6, 10)); border-radius: 14px; padding: 18px; border: 1px solid rgba(255, 255, 255, 0.04); }
+
+.hidden { display: none; }
+
+@media (max-width: 720px) {
+  header { padding: 8px; }
+  .logo .symbol { width: 44px; height: 44px; }
+  .skull { width: 44px; height: 44px; right: 8px; bottom: 80px; }
+}
+
+.muted { opacity: 0.65; font-size: 13px; }
+------MultipartBoundary--DX7d4Duim7FHnmeVlvAe7gxyht0hxLnys7YlqlhXOM------
